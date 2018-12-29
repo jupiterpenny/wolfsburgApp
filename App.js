@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet } from 'react-native';
 import {createStackNavigator} from 'react-navigation';
 
 import Login from './screens/Login';
@@ -13,7 +13,7 @@ import FeedCommentType from './screens/FeedCommentType';
 import MessageFriendComments from './screens/MessageFriendComments';
 import GroupChat from './screens/GroupChat';
 
-console.disableYellowBox = true;
+// console.disableYellowBox = true;
 
 export default class App extends React.Component {
     render() {

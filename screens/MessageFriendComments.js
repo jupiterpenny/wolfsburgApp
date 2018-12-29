@@ -1,7 +1,7 @@
 import React from 'react';
 import {StyleSheet, Text, View, Dimensions, Image, TouchableOpacity, FlatList, ScrollView} from 'react-native';
 
-import {} from 'react-native-elements'
+import {Header} from 'react-native-elements'
 import * as firebase from 'firebase';
 import {Form, Input, Item, Button, Label } from 'native-base'
 
@@ -242,8 +242,23 @@ export default class MessageFriendComments extends React.Component {
 
 
             <View style={styles.container}>
+                <View>
+                    <Header
+                        backgroundColor = "black"
+                        rightComponent={{ icon: 'home', color: '#fff',   onPress: () => this.props.navigation.replace('Profile', {
+                                email: this.props.navigation.state.params.email,
+                                userName: this.props.navigation.state.params.userName,
+                                userPic: this.props.navigation.state.params.userPic
+
+                            })
+
+                        }}
+                        centerComponent={{ text: 'Wolfsburg MotorSports', style: { color: '#fff', fontSize: 25 } }}
+
+                    />
+                </View>
 <View style={styles.row}>
-                <Image source={{uri: this.props.navigation.state.params.userPic}} style={styles.itemPic}/>
+                <Image source={{uri: this.state.userPic}} style={styles.itemPic}/>
                 <Image source={{uri: this.props.navigation.state.params.toPic}} style={styles.itemPic}/>
 </View>
     <View>

@@ -5,12 +5,7 @@ import * as firebase from 'firebase';
 
 
 const firebaseConfig = {
-    apiKey: "AIzaSyAy5mh_G4mEGCE9hF6JBNEMwxu2UXtI_Fo",
-    authDomain: "wolffeed-66182.firebaseapp.com",
-    databaseURL: "https://wolffeed-66182.firebaseio.com",
-    projectId: "wolffeed-66182",
-    storageBucket: "wolffeed-66182.appspot.com",
-    messagingSenderId: "780054496404"
+
 };
 
 firebase.initializeApp(firebaseConfig);

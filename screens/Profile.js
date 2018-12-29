@@ -1,9 +1,9 @@
 
 import React from 'react';
-import { StyleSheet, Text, View, Image, ImageBackground } from 'react-native';
+import {StyleSheet, Text, View, Image, ImageBackground} from 'react-native';
 import * as firebase from 'firebase';
 import { Button } from 'react-native-elements'
-import {Form} from "native-base";
+
 
 
 
@@ -84,6 +84,7 @@ export default class Profile extends React.Component {
     render() {
         let pic = {uri: this.state.pic};
         let bkg = {uri: this.state.carPic};
+        let banner = {uri: '../images/vmsBanner.png' }
         const tent = this.name;
         console.log(tent);
         return (
@@ -94,22 +95,12 @@ export default class Profile extends React.Component {
                         <Image source = {pic} style={styles.itemPic}/>
                     </View>
                     <View>
-                        <Button
-                                title="Post"
-                                large
-                                rightIcon={{name: 'comment'}}
-                                backgroundColor= 'orange'
-                                rounded
-                                onPress={()=> this.props.navigation.replace('Post', {
-                                    userName: this.state.name,
-                                    userPic: this.state.pic,
-                                    email: this.props.navigation.state.params.email
-                                })} />
-                        <Text></Text>
+                        <Image source = {require('../assets/smallLogo.png')} style={{width: 200, height: 100, marginTop: 5, marginLeft:4}}/>
+
                         <Button
                                 title="Feed"
                                 large
-                                backgroundColor = 'blue'
+                                backgroundColor = 'black'
                                 rounded
                                 rightIcon={{name: 'forum'}}
                                 onPress={()=> this.props.navigation.replace('FeedPost', {
@@ -121,7 +112,7 @@ export default class Profile extends React.Component {
                         <Button
                             title="messenger"
                             large
-                            backgroundColor = 'green'
+                            backgroundColor = 'black'
                             rounded
                             rightIcon={{name: 'message'}}
                             onPress={()=> this.props.navigation.replace('Messenger', {
@@ -144,7 +135,7 @@ export default class Profile extends React.Component {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: 'black',
+        backgroundColor: '#f7931e',
     },
     right: {
         padding: '2%'

@@ -1,9 +1,10 @@
 import React from 'react';
 import {StyleSheet, Text, View, Dimensions, Image, TouchableOpacity, FlatList, ScrollView} from 'react-native';
 
-import {} from 'react-native-elements'
+import {Header} from 'react-native-elements'
 import * as firebase from 'firebase';
 import {Form, Input, Item, Button, Label } from 'native-base'
+
 
 const firebaseConfig = {
 
@@ -17,13 +18,7 @@ const firebaseConfig = {
 //     },
 // ];
 
-const date = new Date().getDate();
-const month = new Date().getMonth() +1;
-const year = new Date().getFullYear();
-const hours = new Date().getHours();
-const min = new Date().getMinutes();
-const sec = new Date().getSeconds();
-const dater =  date + "" + month + "" + year + "" + hours + "" + min + "" + sec;
+
 
 
 
@@ -33,7 +28,7 @@ export default class FeedCommentType extends React.Component {
         super(props);
         this.state = {
             commented: '',
-            userName:this.props.navigation.state.params.userName,
+            userName: this.props.navigation.state.params.userName,
             userPic: this.props.navigation.state.params.userPic,
             dater: this.props.navigation.state.params.dater,
             email: this.props.navigation.state.params.email
@@ -49,7 +44,13 @@ export default class FeedCommentType extends React.Component {
         if(!firebase.apps.length){
             firebase.initializeApp(config);
         }
-
+        const date = new Date().getDate();
+        const month = new Date().getMonth() +1;
+        const year = new Date().getFullYear();
+        const hours = new Date().getHours();
+        const min = new Date().getMinutes();
+        const sec = new Date().getSeconds();
+        const dater =  date + "" + month + "" + year + "" + hours + "" + min + "" + sec;
 
         if(this.state.commented == ""){
             alert("type something first")
@@ -67,7 +68,7 @@ export default class FeedCommentType extends React.Component {
                 console.log("error posting", error)
             });
 
-            this.props.navigation.navigate('FeedPost', {
+            this.props.navigation.replace('FeedPost', {
                 pic: this.props.navigation.state.params.pic,
                 name: this.props.navigation.state.params.name,
                 text: this.props.navigation.state.params.text,
@@ -95,6 +96,21 @@ export default class FeedCommentType extends React.Component {
 
             <View style={styles.container}>
                 <View>
+                    <Header
+                        backgroundColor = "black"
+                        rightComponent={{ icon: 'home', color: '#fff',   onPress: () => this.props.navigation.replace('Profile', {
+                                email: this.props.navigation.state.params.email,
+                                name: this.props.navigation.state.params.userName,
+                                pic: this.props.navigation.state.params.userPic
+
+                            })
+
+                        }}
+                        centerComponent={{ text: 'Wolfsburg MotorSports', style: { color: '#fff', fontSize: 25 } }}
+
+                    />
+                </View>
+                <View>
                     <Image source={{uri: this.props.navigation.state.params.pic}} style={styles.itemPic}/>
                     <Text style={styles.itemName}>{this.props.navigation.state.params.title}</Text>
                     <Image source={{uri: this.props.navigation.state.params.date}} style={{width: (SCREEN_WIDTH), height: 150}}/>
@@ -112,7 +128,7 @@ export default class FeedCommentType extends React.Component {
                     />
                     </Item>
                     <Button style={styles.button}
-                            onPress={() => this.postComment(this.state.comment, this.state.userName, this.state.userPic)}>
+                            onPress={() => this.postComment(this.state.comment, this.props.navigation.state.params.userName, this.props.navigation.state.params.userPic)}>
                         <Text style={{color:'white'}}>+</Text>
                     </Button>
                 </Form>
@@ -136,23 +152,23 @@ export default class FeedCommentType extends React.Component {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        marginTop: 10
+        marginTop: 5
     },
     itemBlock: {
-        paddingBottom: 5,
+        paddingBottom: 3,
         borderWidth: 0.5,
         // borderColor: '#d6d7da',
     },
     itemBlock2: {
         flexDirection: 'row',
-        paddingBottom: 5,
+        paddingBottom: 3,
         borderWidth: 0.5,
         // borderColor: '#d6d7da',
     },
     itemImage: {
         width: 150,
         height: 150,
-        paddingTop: 5,
+        paddingTop: 3,
         marginLeft:30
     },
     itemPic: {

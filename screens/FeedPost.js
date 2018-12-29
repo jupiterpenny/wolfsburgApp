@@ -30,7 +30,8 @@ export default class FeedPost extends React.Component {
             holdS: '',
             userName: this.props.navigation.state.params.name,
             userPic: this.props.navigation.state.params.pic,
-            lengthS: ''
+            lengthS: '',
+            email: this.props.navigation.state.params.email
         };
     }
 
@@ -87,7 +88,7 @@ export default class FeedPost extends React.Component {
                     <Image source={{uri: item.date}} style={{width: (SCREEN_WIDTH - 100), height: 150}}/>
                     <Text style={styles.itemLastMessage}>{item.text}</Text>
                     <View style={styles.container}>
-                        <TouchableOpacity onPress={() => this.props.navigation.navigate('FeedComments',{
+                        <TouchableOpacity onPress={() => this.props.navigation.replace('FeedComments',{
                             pic: item.pic,
                             name: item.name,
                             text: item.text,
@@ -124,6 +125,13 @@ export default class FeedPost extends React.Component {
             <View style={styles.container}>
                 <Header
                     backgroundColor = "black"
+                    leftComponent={{ icon: 'camera', color: '#fff',   onPress: () => this.props.navigation.replace('Post', {
+                            email: this.props.navigation.state.params.email,
+                            userName: this.props.navigation.state.params.userName,
+                            userPic: this.props.navigation.state.params.userPic
+                        })
+
+                    }}
                     rightComponent={{ icon: 'home', color: '#fff',   onPress: () => this.props.navigation.replace('Profile', {
                             email: this.props.navigation.state.params.email,
                             userName: this.props.navigation.state.params.userName,

@@ -77,11 +77,14 @@ check = (name, pic) =>{
         if (this.state.userName == name || name == ""){
             alert("N/A")
         } else {
-            this.props.navigation.navigate('MessageFriendComments', {
+            this.props.navigation.replace('MessageFriendComments', {
                 userName: this.state.userName,
                 userPic: this.state.userPic,
                 toName: name,
-                toPic: pic
+                toPic: pic,
+                email: this.props.navigation.state.params.email,
+                name: this.props.navigation.state.params.userName,
+                pic: this.props.navigation.state.params.userPic
             });
         }
 }
@@ -122,8 +125,8 @@ check = (name, pic) =>{
                         backgroundColor = "black"
                         rightComponent={{ icon: 'home', color: '#fff',   onPress: () => this.props.navigation.replace('Profile', {
                                 email: this.props.navigation.state.params.email,
-                                userName: this.props.navigation.state.params.userName,
-                                userPic: this.props.navigation.state.params.userPic
+                                name: this.props.navigation.state.params.userName,
+                                pic: this.props.navigation.state.params.userPic
 
                             })
 
@@ -142,17 +145,21 @@ check = (name, pic) =>{
                     renderItem={this.renderItem.bind(this)}
                 />
                 <Header
-                    leftComponent={{ icon: 'group', color: '#fff', size: 25,   onPress: () => this.props.navigation.navigate('GroupChat', {
+                    leftComponent={{ icon: 'group', color: '#fff', size: 25,   onPress: () => this.props.navigation.replace('GroupChat', {
                             userName: this.props.navigation.state.params.userName,
-                            userPic: this.props.navigation.state.params.userPic
+                            userPic: this.props.navigation.state.params.userPic,
+                            email: this.props.navigation.state.params.email,
 
                         })
 
                     }}
                     backgroundColor = "black"
-                    rightComponent={{ icon: 'group', color: '#fff', size: 25,   onPress: () => this.props.navigation.navigate('GroupChat', {
+                    rightComponent={{ icon: 'group', color: '#fff', size: 25,   onPress: () => this.props.navigation.replace('GroupChat', {
                             userName: this.props.navigation.state.params.userName,
-                            userPic: this.props.navigation.state.params.userPic
+                            userPic: this.props.navigation.state.params.userPic,
+                            email: this.props.navigation.state.params.email,
+                            name: this.props.navigation.state.params.userName,
+                            pic: this.props.navigation.state.params.userPic
 
                         })
 

@@ -1,6 +1,6 @@
 import React from 'react';
 import {StyleSheet, Text, View, Image, ScrollView, Dimensions} from 'react-native';
-import { Button } from 'react-native-elements'
+import { Button, Header } from 'react-native-elements'
 import * as firebase from 'firebase';
 
 import { Input } from 'native-base'
@@ -46,7 +46,7 @@ export default class Home extends React.Component {
            console.log("error posting", error)
         });
 
-        this.props.navigation.navigate('FeedPost', {
+        this.props.navigation.replace('Profile', {
             name: this.props.navigation.state.params.name,
             pic: this.state.pic,
             postDate: this.state.postDate,
@@ -61,6 +61,7 @@ export default class Home extends React.Component {
 
     render() {
 
+
         let pics = {uri:this.props.navigation.state.params.image.uri };
         console.log(this.props.navigation.state.params.image.uri, "image from home");
         console.log(this.state.postDate, "postDate from home")
@@ -70,6 +71,21 @@ export default class Home extends React.Component {
         const imageWidth = dimensions.width;
         return (
             <View style={styles.container}>
+                <View>
+                    <Header
+                        backgroundColor = "black"
+                        rightComponent={{ icon: 'home', color: '#fff',   onPress: () => this.props.navigation.replace('Profile', {
+                                email: this.props.navigation.state.params.email,
+                                userName: this.props.navigation.state.params.userName,
+                                userPic: this.props.navigation.state.params.userPic
+
+                            })
+
+                        }}
+                        centerComponent={{ text: 'Wolfsburg MotorSports', style: { color: '#fff', fontSize: 25 } }}
+
+                    />
+                </View>
                 <ScrollView>
                 <Input
                     style={styles.title}
@@ -89,7 +105,7 @@ export default class Home extends React.Component {
                     placeholder = "Type your comments here"
                 />
 
-
+                    <Text></Text>
                 <Button style={styles.button}
                         large
                         rightIcon={{name: 'comment'}}
@@ -113,7 +129,7 @@ export default class Home extends React.Component {
                         backgroundColor= 'blue'
                         rounded
                         title ="Change Pic"
-                        onPress={() =>   this.props.navigation.navigate('Post', {
+                        onPress={() =>   this.props.navigation.replace('Post', {
                             name: this.props.navigation.state.params.name,
                             userName: this.props.navigation.state.params.userName,
                             userPic: this.props.navigation.state.params.userPic,
@@ -142,18 +158,17 @@ const styles = StyleSheet.create({
     input:{
         textAlign: 'center',
         fontWeight: 'bold',
-        fontSize: 20,
-        borderRadius: 40,
+        fontSize: 15,
         backgroundColor: '#FDFCF2',
         borderWidth: 0.5,
         borderColor: 'black',
-        height: 200
+        height: 50,
+        marginTop: 4,
     },
     title:{
         textAlign:'center',
         fontWeight: 'bold',
-        fontSize: 20,
-        borderRadius: 40,
+        fontSize: 15,
         backgroundColor: '#FDFCF2',
         borderWidth: 0.5,
         borderColor: 'black'

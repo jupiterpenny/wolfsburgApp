@@ -1,9 +1,10 @@
 import React from 'react';
 import {StyleSheet, Text, View, Dimensions, Image, TouchableOpacity, FlatList, ScrollView} from 'react-native';
 
-import {} from 'react-native-elements'
+
 import * as firebase from 'firebase';
 import {Form, Input, Item, Button, Label } from 'native-base'
+import {Header} from "react-native-elements";
 
 const firebaseConfig = {
 
@@ -94,7 +95,7 @@ export default class FeedComments extends React.Component {
             }
         )
 
-        this.props.navigation.navigate('FeedComments', {
+        this.props.navigation.replace('FeedComments', {
             pic: this.props.navigation.state.params.pic,
             name: this.props.navigation.state.params.name,
             text: this.props.navigation.state.params.text,
@@ -149,6 +150,21 @@ export default class FeedComments extends React.Component {
 
 
             <View style={styles.container}>
+                <View>
+                    <Header
+                        backgroundColor = "black"
+                        rightComponent={{ icon: 'home', color: '#fff',   onPress: () => this.props.navigation.replace('Profile', {
+                                email: this.props.navigation.state.params.email,
+                                name: this.props.navigation.state.params.userName,
+                                pic: this.props.navigation.state.params.userPic
+
+                            })
+
+                        }}
+                        centerComponent={{ text: 'Wolfsburg MotorSports', style: { color: '#fff', fontSize: 25 } }}
+
+                    />
+                </View>
 
                 <Image source={{uri: this.props.navigation.state.params.pic}} style={styles.itemPic}/>
                 <Text style={styles.itemName}>{this.props.navigation.state.params.title}</Text>

@@ -165,17 +165,6 @@ render() {
     <View style={{ justifyContent: 'center', alignItems: 'center', flexDirection: 'row', flex: 1}}>
 
         <View>
-            {/*<Button*/}
-                {/*title="Take Pic..."*/}
-                {/*large*/}
-                {/*rightIcon={{name: 'camera'}}*/}
-                {/*backgroundColor= 'orange'*/}
-                {/*rounded*/}
-                {/*onPress={this.onChooseImagePress}*/}
-                {/*/>*/}
-            {/*<Text></Text>*/}
-            {/*<Text></Text>*/}
-            {/*<Text></Text>*/}
             <Button
                 title="Get Pic"
                 large
